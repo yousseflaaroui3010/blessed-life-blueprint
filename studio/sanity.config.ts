@@ -6,8 +6,8 @@ import { schemaTypes } from "./schemas";
 export default defineConfig({
   name: "blb",
   title: "Blessed Life Blueprint",
-  projectId: process.env.SANITY_PROJECT_ID ?? "REPLACE_ME",
-  dataset: process.env.SANITY_DATASET ?? "production",
+  projectId: "dy5zmmyg",
+  dataset: "production",
   plugins: [structureTool(), visionTool()],
   schema: { types: schemaTypes },
 });
