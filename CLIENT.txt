@@ -1,0 +1,174 @@
+CLIENT REQUIREMENTS — Blessed Life Blueprint (BLB)
+====================================================
+Source: Client video walkthrough + email
+Project URL (target): blessedlife.life
+Current build: React + Vite + Tailwind (single-page, data driven from data.ts)
+====================================================
+
+
+GUIDING CONSTRAINTS (non-negotiable)
+--------------------------------------
+- This is a personal legacy project, NOT a business. Do not over-build.
+- Cost must be as close to zero as possible. Client said "little to nothing."
+- Client will NEVER log in to a backend or touch code. All updates flow through
+  a human intermediary (text, email, or voice note to a person who makes the change).
+- The simpler the solution, the better. Do not propose complexity that adds cost
+  or requires the client to learn anything new.
+
+
+SECTION 1: GET IT LIVE (First Priority)
+-----------------------------------------
+The client wants Version 1 deployed to blessedlife.life as fast and cheaply as possible.
+
+  1.1  Deploy the current React/Vite build to a free host (Vercel or Netlify free tier).
+       This is already zero-cost. No new infrastructure needed.
+
+  1.2  Purchase and connect the domain blessedlife.life. Client confirmed it is available.
+       Connect DNS from the registrar to Vercel/Netlify. Enable SSL (automatic on both platforms).
+
+  1.3  All content that is currently a placeholder must either be:
+       (a) Populated with real content before launch, OR
+       (b) Removed entirely if no content is available yet.
+       Placeholder cards with "Coming soon" are acceptable only where content is actively pending.
+
+  BLOCKED: Several content items below require the client to supply the actual
+  URLs, names, or links before they can go live. These are flagged [NEEDS CLIENT INPUT].
+
+
+SECTION 2: CONTENT — PEOPLE I FOLLOW & LEARN FROM
+---------------------------------------------------
+This is a standalone section the client showed prominently in the video.
+Currently MISSING from the site — it needs to be built and added before Books.
+
+People to include (client named all of these):
+  - Ed Mylett
+  - Tony Robbins
+  - Simon Sinek
+  - Craig Groeschel
+  - John Maxwell
+  - Dan Martell
+  - Lewis Howes
+
+Each person's card must include:
+  - A profile photo (client explicitly said "we should have a picture of these guys")
+    [NEEDS CLIENT INPUT: client to supply or approve photos for each person]
+  - Name
+  - Link to their YouTube channel
+  - Link to their website (if applicable)
+  - Optional: a short note from Jon about why he follows them
+
+Client also said he will add and remove people over time:
+  "And I'll add other people, I'll take some off."
+  This means the people list must be easy to update (adding/removing entries in data.ts).
+
+
+SECTION 3: CONTENT — BOOKS I RECOMMEND
+-----------------------------------------
+Books section already exists and has 7 real books. Client asked for:
+
+  3.1  Each book card must have a "BUY ON AMAZON" button/link.
+       Client described this feature while walking through the books section.
+       The Book data structure needs an amazonLink field for each entry.
+
+  3.2  Ability to add new books continuously.
+       "I'd like to add new books, new links, things like that."
+       No redesign needed — just adding entries to the books list in data.ts.
+
+
+SECTION 4: CONTENT — AI TOOLS & EDUCATION
+-------------------------------------------
+This section exists. Client's specific requests:
+
+  4.1  AI Tools I Use — currently has: Claude, Manus, n8n, Vapi, ChatGPT.
+       3 placeholder slots exist. Client did not name additional tools on the call.
+       [NEEDS CLIENT INPUT: any additional tools to add]
+
+  4.2  AI Education & Learning — all 3 entries are placeholders.
+       [NEEDS CLIENT INPUT: client to provide specific courses or resources]
+
+  4.3  Facebook Groups for AI — all 3 entries are placeholders.
+       Client explicitly said at 2:18: "I need to add some Facebook groups that I'm part of."
+       [NEEDS CLIENT INPUT: client to provide group names and Facebook URLs]
+
+  4.4  People I Follow in AI — all 3 entries are placeholders.
+       (Note: this is the AI-specific sub-section inside the AI section,
+       distinct from the main "People I Follow" section in Section 2 above.)
+       [NEEDS CLIENT INPUT: client to provide AI thought leaders they follow]
+
+
+SECTION 5: CONTENT — ASSESSMENTS & SELF DISCOVERY
+----------------------------------------------------
+This section exists. Client's specific requests:
+
+  5.1  Fix the Spiritual Gifts Assessment link.
+       Client showed at 2:27 that clicking "Discover Your Spiritual Gifts" opens a blank tab.
+       The link is currently set to "#" in the data.
+       Client said: "I can get you the link, but I just need to make sure it works."
+       [NEEDS CLIENT INPUT: client to provide the correct URL for their preferred
+       Spiritual Gifts assessment]
+
+  5.2  Personal DNA questions — client mentioned wanting to refine these.
+       Currently has 10 questions. Client may want to adjust wording or add/remove items.
+       [NEEDS CLIENT INPUT: client to review and approve the current question list]
+
+  5.3  Business DNA questions — same as above.
+       [NEEDS CLIENT INPUT: client to review and approve]
+
+
+SECTION 6: THE UPDATE WORKFLOW (Core Pain Point)
+--------------------------------------------------
+This is the client's most-repeated request across the entire video and email.
+
+  "I want to make updates, changes, add things with just telling somebody
+   or emailing them or texting them. I don't want to go into Manus and have
+   to do all the updates myself."
+
+The solution for Version 1 is simple and free:
+  - All site content lives in one file: client/src/lib/data.ts
+  - The intermediary (whoever manages the site) receives a text/email from the client
+    such as "add this book: Atomic Habits by James Clear" and updates that one file
+  - A new build is deployed to Vercel/Netlify (one command or automatic via GitHub)
+  - No admin panel, no backend, no login required
+
+This workflow costs nothing and requires no new infrastructure.
+An AI-assisted pipeline (auto-parsing emails into data changes) can be explored later
+if the update volume justifies it — but it is NOT what the client is asking for now.
+
+
+SECTION 7: FUTURE IDEAS (Low Priority — Do Not Build Yet)
+----------------------------------------------------------
+Client mentioned these as possibilities, not requests. Do not scope or build until
+the client explicitly asks for them after v1 is live.
+
+  7.1  "Message of the Day"
+       "We may have message of the day or something like that pop up."
+       Timestamp 4:17. Casual mention, not a firm ask.
+
+  7.2  SMS / text delivery to followers
+       "Texting men that are following this website... texting them something
+       every day, three times a week about a video or something."
+       Timestamp 4:23. Future vision, not v1 scope.
+
+  7.3  App or shareable experience
+       "Be able to share a website with them or an app or something like that."
+       Timestamp 4:03. Vague, future only.
+
+
+SECTION 8: CONTENT CURRENTLY AWAITING CLIENT INPUT (Summary)
+--------------------------------------------------------------
+Nothing in this list should be stubbed out or guessed. Wait for the client.
+
+  [ ] Profile photos for all 7 people in the People section
+  [ ] Correct URL for Spiritual Gifts Assessment
+  [ ] Names + URLs for Facebook Groups for AI
+  [ ] Names + URLs for AI Education & Learning resources
+  [ ] Names + URLs for AI Thought Leaders (in the AI section)
+  [ ] Any additional AI Tools to add
+  [ ] Review and approval of Personal DNA questions
+  [ ] Review and approval of Business DNA questions
+  [ ] Confirmation of any additional books to add at launch
+
+
+====================================================
+END OF CLIENT REQUIREMENTS
+====================================================
