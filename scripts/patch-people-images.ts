@@ -33,6 +33,30 @@ const patches = [
     filename: "simon-sinek.jpg",
     contentType: "image/jpeg",
   },
+  {
+    name: "Craig Groeschel",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Craig_Groeschel.png/250px-Craig_Groeschel.png",
+    filename: "craig-groeschel.png",
+    contentType: "image/png",
+  },
+  {
+    name: "John Maxwell",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/John_C._Maxwell_%28cropped%29.jpg/250px-John_C._Maxwell_%28cropped%29.jpg",
+    filename: "john-maxwell.jpg",
+    contentType: "image/jpeg",
+  },
+  {
+    name: "Dan Martell",
+    imageUrl: "https://static.wixstatic.com/media/ba8d35_46ddeb0e63b74dcb8d1786faffdce4b0~mv2.jpg",
+    filename: "dan-martell.jpg",
+    contentType: "image/jpeg",
+  },
+  {
+    name: "Lewis Howes",
+    imageUrl: "https://lewishowes.com/wp-content/uploads/2025/03/home_hero-scaled.jpg",
+    filename: "lewis-howes.jpg",
+    contentType: "image/jpeg",
+  },
 ];
 
 async function run() {
