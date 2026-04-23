@@ -22,6 +22,7 @@ function ExpandableCard({
   items: string[];
 }) {
   const [open, setOpen] = useState(false);
+  const isRich = items.length > 0 && items[0].includes("||");
 
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -43,22 +44,52 @@ function ExpandableCard({
 
       {open && (
         <div className="border-t border-border px-6 md:px-8 py-6 bg-sand/30">
-          <p className="text-xs uppercase tracking-widest text-navy/40 font-medium mb-4">
-            Answer these questions to build your profile
-          </p>
-          <ul className="space-y-3">
-            {items.map((item, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <CheckCircle2
-                  className="text-amber shrink-0 mt-0.5"
-                  size={16}
-                />
-                <span className="text-sm text-navy/70 leading-relaxed">
-                  {item}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {isRich ? (
+            <div className="space-y-7">
+              {items.map((item, i) => {
+                const [qTitle, question, why] = item.split("||");
+                return (
+                  <div key={i} className="flex items-start gap-4">
+                    <span className="w-8 h-8 rounded-full bg-amber/20 text-navy font-bold text-sm flex items-center justify-center shrink-0 font-serif mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p className="font-serif font-semibold text-navy mb-1.5">
+                        {qTitle}
+                      </p>
+                      <p className="text-sm text-navy/75 leading-relaxed mb-2.5">
+                        {question}
+                      </p>
+                      {why && (
+                        <p className="text-xs italic text-navy/45 border-l-2 border-amber/40 pl-3">
+                          Why we ask: {why}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <>
+              <p className="text-xs uppercase tracking-widest text-navy/40 font-medium mb-4">
+                Answer these questions to build your profile
+              </p>
+              <ul className="space-y-3">
+                {items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2
+                      className="text-amber shrink-0 mt-0.5"
+                      size={16}
+                    />
+                    <span className="text-sm text-navy/70 leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       )}
     </div>

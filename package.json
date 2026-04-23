@@ -10,7 +10,9 @@
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
-    "seed": "tsx scripts/seed-sanity.ts"
+    "seed": "tsx scripts/seed-sanity.ts",
+    "patch-images": "tsx scripts/patch-people-images.ts",
+    "patch-dna": "tsx scripts/patch-personal-dna.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
