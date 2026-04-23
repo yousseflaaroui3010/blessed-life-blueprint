@@ -17,13 +17,14 @@ const client = createClient({
 const updatedDNA = {
   title: "Discover Your Personal DNA",
   description:
-    "This isn't a test, and there are no right answers. You can't use AI to write this for you, because an AI doesn't have your memories, your heart, or your lived experiences. To find your true Personal DNA, find a quiet place and answer these four questions using a specific story or memory from your own life:",
+    "Knowing who you are is the first step to living a blessed life. This isn't a test, and you can't use AI to fake the answers. Take a few minutes, grab a journal, and answer these honestly for yourself.",
   cta: "Discover Your Personal DNA",
   expandableContent: [
-    `The "Unseen" Test||Think of a moment when you felt incredibly proud of yourself, but absolutely nobody else was watching or knew about it. What were you doing, and why did it feel so right?||This reveals your true, unfiltered values when ego and applause are removed.`,
-    `The "Noise" Test||What is something the world or culture tells you that you should care deeply about, but deep down, you genuinely don't?||This reveals your boundaries and shows where you are an independent thinker.`,
-    `The "Flow" Test||When was the last time you completely lost track of time because you were so absorbed and energized by what you were doing?||This points directly to your God-given gifts and natural wiring.`,
-    `The "Safe Harbor" Test||Think of the person in your life who makes you feel the most safe, valued, and understood. What exactly do they do that makes you feel that way, and how can you start doing that for someone else?||This reveals the kind of legacy and impact you actually want to leave behind.`,
+    `Your Anchor (Values & Faith)||Instead of listing your "Top 5 Core Values": Think about a time you had to make a really difficult choice. What deep belief, faith, or person made you choose the harder, right path? What is a line you simply refuse to cross?`,
+    `Your Drive (Motivators & Goals)||Instead of listing "Top 3 Goals and Professional Context": If money and titles didn't exist, what problem would you still want to wake up and solve? What is the one goal you have right now that actually scares you a little bit because it matters so much?`,
+    `Your Mirrors (Strengths & Blind Spots)||Instead of asking for "DISC results and Known Blind Spots": What is something that feels completely effortless to you, but seems really hard for everyone else? Conversely, what is the one piece of constructive criticism you've heard more than once from the people who love you most?`,
+    `Your Guardrails (Routines & Non-Negotiables)||Instead of asking for your "Daily Routine": What is the one daily habit or quiet moment that, if you skip it, throws your whole day off? What is your absolute non-negotiable for protecting your peace?`,
+    `Your Frequency (Communication & Tone)||Instead of asking for "Communication Preferences": When you are stressed or overwhelmed, how do you tend to act, and how should the people closest to you handle it? When someone needs to tell you a hard truth, how do you want them to say it to you?`,
   ],
 };
 
