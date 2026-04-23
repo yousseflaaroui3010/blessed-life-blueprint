@@ -1,8 +1,3 @@
-/**
- * AISection — "Open Shelf" Design
- * Sub-sections: AI Tools I Use, AI Education, Facebook Groups, People I Follow.
- * Dark navy banner with AI section image, then card grids.
- */
 import {
   aiTools as staticAITools,
   aiEducation as staticAIEducation,
@@ -33,12 +28,61 @@ function SubSectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-function PlaceholderCard({ label, icon: Icon }: { label: string; icon: React.ElementType }) {
-  return (
-    <div className="placeholder-card rounded-lg p-6 h-full flex flex-col items-center justify-center min-h-[140px]">
-      <Icon className="text-gray-cool/40 mb-3" size={28} />
-      <span className="text-sm text-gray-cool/60 font-medium">{label}</span>
+function LinkCard({ name, url, description, icon: Icon }: {
+  name: string;
+  url?: string;
+  description: string;
+  icon: React.ElementType;
+}) {
+  const inner = (
+    <div className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-3">
+        <h4 className="font-serif text-lg text-navy">{name}</h4>
+        {url && (
+          <ExternalLink size={14} className="text-navy/30 group-hover:text-amber transition-colors" />
+        )}
+      </div>
+      <p className="text-sm text-navy/60 leading-relaxed flex-1">{description}</p>
+      {url && (
+        <div className="mt-4 text-xs text-amber font-medium uppercase tracking-wider">Visit →</div>
+      )}
     </div>
+  );
+
+  return url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" className="h-full flex flex-col">
+      {inner}
+    </a>
+  ) : (
+    <div className="h-full flex flex-col">{inner}</div>
+  );
+}
+
+function SubSection({
+  items,
+  title,
+  icon: Icon,
+}: {
+  items: { name: string; url?: string; description: string; placeholder?: boolean }[];
+  title: React.ReactNode;
+  icon: React.ElementType;
+}) {
+  const real = items.filter((item) => !item.placeholder);
+  if (real.length === 0) return null;
+
+  return (
+    <>
+      <FadeInSection>
+        <SubSectionTitle>{title}</SubSectionTitle>
+      </FadeInSection>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        {real.map((item, i) => (
+          <FadeInSection key={i} delay={i * 80}>
+            <LinkCard name={item.name} url={item.url} description={item.description} icon={Icon} />
+          </FadeInSection>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -53,14 +97,13 @@ export default function AISection({
   facebookGroups?: FacebookGroup[];
   aiLeaders?: AILeader[];
 }) {
+  const realTools = aiTools.filter((t) => !t.placeholder);
+
   return (
     <section id="ai" className="bg-linen">
       {/* Dark banner with image */}
       <div className="relative py-20 md:py-28 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${AI_IMG})` }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${AI_IMG})` }} />
         <div className="absolute inset-0 bg-navy/85" />
         <div className="container relative z-10">
           <FadeInSection>
@@ -82,95 +125,46 @@ export default function AISection({
         </div>
       </div>
 
-      {/* AI Tools I Use */}
       <div className="container py-16">
-        <FadeInSection>
-          <SubSectionTitle>
-            <Bot className="text-amber" size={22} />
-            AI Tools I Use
-          </SubSectionTitle>
-        </FadeInSection>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {aiTools.map((tool, i) => (
-            <FadeInSection key={i} delay={i * 80}>
-              {tool.placeholder ? (
-                <PlaceholderCard label={tool.name} icon={Bot} />
-              ) : (
-                <a
-                  href={tool.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-serif text-lg text-navy">
-                      {tool.name}
-                    </h4>
-                    <ExternalLink
-                      size={14}
-                      className="text-navy/30 group-hover:text-amber transition-colors"
-                    />
-                  </div>
-                  <p className="text-sm text-navy/60 leading-relaxed flex-1">
-                    {tool.description}
-                  </p>
-                  <div className="mt-4 text-xs text-amber font-medium uppercase tracking-wider">
-                    Visit →
-                  </div>
-                </a>
-              )}
+        {/* AI Tools I Use */}
+        {realTools.length > 0 && (
+          <>
+            <FadeInSection>
+              <SubSectionTitle>
+                <Bot className="text-amber" size={22} />
+                AI Tools I Use
+              </SubSectionTitle>
             </FadeInSection>
-          ))}
-        </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+              {realTools.map((tool, i) => (
+                <FadeInSection key={i} delay={i * 80}>
+                  <LinkCard name={tool.name} url={tool.url} description={tool.description} icon={Bot} />
+                </FadeInSection>
+              ))}
+            </div>
+          </>
+        )}
 
         {/* AI Education */}
-        <FadeInSection>
-          <SubSectionTitle>
-            <GraduationCap className="text-amber" size={22} />
-            AI Education &amp; Learning
-          </SubSectionTitle>
-        </FadeInSection>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {aiEducation.map((item, i) => (
-            <FadeInSection key={i} delay={i * 80}>
-              <PlaceholderCard label={item.name} icon={GraduationCap} />
-            </FadeInSection>
-          ))}
-        </div>
+        <SubSection
+          items={aiEducation}
+          icon={GraduationCap}
+          title={<><GraduationCap className="text-amber" size={22} />AI Education &amp; Learning</>}
+        />
 
         {/* Facebook Groups */}
-        <FadeInSection>
-          <SubSectionTitle>
-            <Users className="text-amber" size={22} />
-            Facebook Groups for AI
-          </SubSectionTitle>
-        </FadeInSection>
+        <SubSection
+          items={facebookGroups}
+          icon={Users}
+          title={<><Users className="text-amber" size={22} />Facebook Groups for AI</>}
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {facebookGroups.map((item, i) => (
-            <FadeInSection key={i} delay={i * 80}>
-              <PlaceholderCard label={item.name} icon={Users} />
-            </FadeInSection>
-          ))}
-        </div>
-
-        {/* People I Follow */}
-        <FadeInSection>
-          <SubSectionTitle>
-            <UserCircle className="text-amber" size={22} />
-            People I Follow in AI
-          </SubSectionTitle>
-        </FadeInSection>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {aiLeaders.map((item, i) => (
-            <FadeInSection key={i} delay={i * 80}>
-              <PlaceholderCard label={item.name} icon={UserCircle} />
-            </FadeInSection>
-          ))}
-        </div>
+        {/* AI Leaders */}
+        <SubSection
+          items={aiLeaders}
+          icon={UserCircle}
+          title={<><UserCircle className="text-amber" size={22} />People I Follow in AI</>}
+        />
       </div>
     </section>
   );
